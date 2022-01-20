@@ -27,7 +27,6 @@ hs_err_pid*
 bin/
 /db
 .eclipse
-/lib/
 /logs/
 /modules
 /project/project
