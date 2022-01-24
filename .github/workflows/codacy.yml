@@ -25,9 +25,28 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Prepare environment
+        run: |
+          export CODACY_CODE=$GITHUB_WORKSPACE
+          apt-get update
+          apt-get -y install openjdk-8-jdk openjdk-8-jre
+          curl -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install gradle 7.3.3
+          gradle -v
+          gradle jacocoTestReport
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r lib/build/reports/jacoco/test/jacocoTestReport.xml
+          docker run \
+            --rm=true \
+            --env CODACY_CODE="$CODACY_CODE" \
+            --volume /var/run/docker.sock:/var/run/docker.sock \
+            --volume "$CODACY_CODE":"$CODACY_CODE" \
+            --volume /tmp:/tmp \
+            codacy/codacy-analysis-cli \
+              analyze --tool spotbugs --upload
+
+      #- name: Run tests and generate coverage
+      #  run: gradle test
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
