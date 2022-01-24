@@ -28,8 +28,8 @@ jobs:
       - name: Prepare environment
         run: |
           export CODACY_CODE=$GITHUB_WORKSPACE
-          apt-get update
-          apt-get -y install openjdk-8-jdk openjdk-8-jre
+          sudo apt-get update
+          sudo apt-get -y install openjdk-8-jdk openjdk-8-jre
           curl -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install gradle 7.3.3
