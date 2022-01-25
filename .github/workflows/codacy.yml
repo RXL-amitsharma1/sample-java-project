@@ -26,6 +26,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Prepare environment
+        with:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
         run: |
           export CODACY_CODE=$GITHUB_WORKSPACE
           sudo apt-get update
@@ -43,7 +45,7 @@ jobs:
             --volume "$CODACY_CODE":"$CODACY_CODE" \
             --volume /tmp:/tmp \
             codacy/codacy-analysis-cli \
-              analyze --tool spotbugs --upload
+              analyze --tool spotbugs --upload --project-token ${{ env.CODACY_PROJECT_TOKEN }}
 
       #- name: Run tests and generate coverage
       #  run: gradle test
