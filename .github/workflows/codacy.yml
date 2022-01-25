@@ -31,8 +31,8 @@ jobs:
         run: |
           echo ${CODACY_PROJECT_TOKEN}
           export CODACY_CODE=$GITHUB_WORKSPACE
-          sudo apt-get update
-          sudo apt-get -y install openjdk-8-jdk openjdk-8-jre
+          sudo apt-get -qq update
+          sudo apt-get -y -qq install openjdk-8-jdk openjdk-8-jre
           curl -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install gradle 7.3.3
