@@ -2,5 +2,5 @@
 engines:
   spotbugs:
     modules:
-      - classesDirectories: [ "lib/build/classes/main" ]
-        sourceDirectories:  [ "lib/src/main" ]
+      - classesDirectories: [ "lib/bin/classes/main" ]
+        sourceDirectories:  [ "lib/src/main/java" ]

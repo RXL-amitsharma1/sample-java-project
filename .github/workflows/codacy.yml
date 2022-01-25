@@ -30,7 +30,7 @@ jobs:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
         run: |
           echo ${CODACY_PROJECT_TOKEN}
-          export CODACY_CODE=$GITHUB_WORKSPACE
+          export CODACY_CODE=$GITHUB_WORKSPACE/lib
           sudo apt-get -qq update
           sudo apt-get -y -qq install openjdk-8-jdk openjdk-8-jre
           curl -s "https://get.sdkman.io" | bash
