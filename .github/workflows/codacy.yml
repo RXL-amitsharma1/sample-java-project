@@ -1,9 +1,12 @@
 name: Client Side Tools and Coverage
 
 on:
-  branches: [ '*' ]
+  push:
+    branches: [ '*' ]
   pull_request:
     branches: [ '*' ]
+
+  workflow_dispatch:
 
 jobs:
   build:
