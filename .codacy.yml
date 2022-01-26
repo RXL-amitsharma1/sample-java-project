@@ -1,6 +1,0 @@
----
-engines:
-  spotbugs:
-    modules:
-      - classesDirectories: [ "lib/bin/classes/main" ]
-        sourceDirectories:  [ "lib/src/main/java" ]
