@@ -1,5 +1,8 @@
-name: Codacy Client Side Tools and Coverage
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -7,25 +10,33 @@ on:
   pull_request:
     branches: [ '*' ]
 
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: Perform Client Side Analysis and Coverage
-      env:
+
+      - name: Prepare environment
+        env:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
-      run: |
+        run: |
+          echo ${CODACY_PROJECT_TOKEN}
           export CODACY_CODE=$GITHUB_WORKSPACE
           sudo apt-get -qq update
           sudo apt-get -y -qq install openjdk-8-jdk openjdk-8-jre
           curl -s "https://get.sdkman.io" | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install gradle 7.3.3
+          gradle -v
           gradle jacocoTestReport
           bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r lib/build/reports/jacoco/test/jacocoTestReport.xml
           docker run \
@@ -36,3 +47,4 @@ jobs:
             --volume /tmp:/tmp \
             codacy/codacy-analysis-cli \
               analyze --tool spotbugs --upload --project-token ${{ secrets.CODACY_PROJECT_TOKEN }} --max-allowed-issues 99999 --commit-uuid $GITHUB_SHA
+
