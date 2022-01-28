@@ -1,0 +1,38 @@
+name: Codacy Client Side Tools and Coverage
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Perform Client Side Analysis and Coverage
+      env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+      run: |
+          export CODACY_CODE=$GITHUB_WORKSPACE
+          sudo apt-get -qq update
+          sudo apt-get -y -qq install openjdk-8-jdk openjdk-8-jre
+          curl -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install gradle 7.3.3
+          gradle jacocoTestReport
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report -r lib/build/reports/jacoco/test/jacocoTestReport.xml
+          docker run \
+            --rm=true \
+            --env CODACY_CODE="$CODACY_CODE" \
+            --volume /var/run/docker.sock:/var/run/docker.sock \
+            --volume "$CODACY_CODE":"$CODACY_CODE" \
+            --volume /tmp:/tmp \
+            codacy/codacy-analysis-cli \
+              analyze --tool spotbugs --upload --project-token ${{ secrets.CODACY_PROJECT_TOKEN }} --max-allowed-issues 99999 --commit-uuid $GITHUB_SHA
