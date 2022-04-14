@@ -7,4 +7,8 @@ public class Library {
     public boolean someLibraryMethod() {
         return true;
     }
+    
+    public void getAccessKey() {
+        byte[] iv = "secret key in here".getBytes();
+    }
 }
