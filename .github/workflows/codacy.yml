@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Send Client Side Tools and Coverage Results
+      - name: Send Client Side Tools and Coverage Results - 
         env:
           CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
         run: |
