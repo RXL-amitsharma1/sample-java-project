@@ -18,7 +18,7 @@ public class Library {
     public Object testObject(Object o, byte[] plainText) throws IllegalBlockSizeException, BadPaddingException{
         Cipher doNothingCihper = new NullCipher();
         byte[] cipherText = doNothingCihper.doFinal(plainText);
-
+        System.out.println("yay");
         return o;
     }
 }
