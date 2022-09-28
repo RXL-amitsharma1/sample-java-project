@@ -3,6 +3,9 @@
  */
 package com.codacy.test;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.Nonnull;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -15,10 +18,16 @@ public class Library {
     }
 
     @Nonnull
-    public Object testObject(Object o, byte[] plainText) throws IllegalBlockSizeException, BadPaddingException{
+    public Object testObject(Object o, byte[] plainText) throws IllegalBlockSizeException, BadPaddingException {
         Cipher doNothingCihper = new NullCipher();
         byte[] cipherText = doNothingCihper.doFinal(plainText);
 
         return o;
+    }
+
+    public void testIL_CONTAINER_ADDED_TO_ITSELF() {
+        Set<Object> l = new HashSet<>();
+        l.add("test");
+        l.add(l);
     }
 }
