@@ -30,4 +30,8 @@ public class Library {
         l.add("test");
         l.add(l);
     }
+
+    public String tostring() {
+        return "this is an issue";
+    }
 }
