@@ -1,0 +1,16 @@
+image: alpine
+
+pipelines:
+  default:
+    - step:
+        script:
+          - echo "Codacy CLI on BitBucket Pipeline!"
+          - mkdir $BITBUCKET_CLONE_DIR/tmp
+          - export CODACY_TMP_DIRECTORY=$BITBUCKET_CLONE_DIR/tmp
+          - echo $CODACY_TMP_DIRECTORY
+          - docker version
+          - apk --no-cache add unzip openjdk8-jre make curl bash
+          - wget "$(curl -s https://api.github.com/repos/codacy/codacy-analysis-cli/releases/latest | grep "http.*codacy-analysis-cli-assembly" | cut -d ':' -f 2,3 | tr -d \" | sed -e "s/ //g")" -O $CODACY_TMP_DIRECTORY/codacy-analysis-cli.jar -q
+          - java -jar $CODACY_TMP_DIRECTORY/codacy-analysis-cli.jar analyse --directory $BITBUCKET_CLONE_DIR --project-token 106fc9902e884a28a1dcb6dcd93f9d7c --upload --max-allowed-issues 9999999 --verbose --tmp-directory $CODACY_TMP_DIRECTORY
+        services:
+          - docker
