@@ -68,7 +68,7 @@ public class Library {
         towerOfHanoi(n-1, helper_rod, to_rod, from_rod);
     }
     
-    long extractMillisecond(String sValue){
+    static long extractMillisecond(String sValue){
         return 0;
     }
     
