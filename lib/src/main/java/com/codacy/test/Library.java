@@ -12,6 +12,8 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NullCipher;
 
+import java.lang.NumberFormatException;
+
 public class Library {
     public boolean someLibraryMethod() {
         return true;
@@ -66,6 +68,10 @@ public class Library {
         towerOfHanoi(n-1, helper_rod, to_rod, from_rod);
     }
     
+    long extractMillisecond(String sValue){
+        return 0;
+    }
+    
     public static long parseTimeValue(String sValue) {
 
     if (sValue == null) {
@@ -75,20 +81,21 @@ public class Library {
     try {
         long millis;
         if (sValue.endsWith("S")) {
-            millis = new ExtractSecond(sValue).invoke();
+            millis = 0;
         } else if (sValue.endsWith("ms")) {
-            millis = new ExtractMillisecond(sValue).invoke();
+            millis = 0;
         } else if (sValue.endsWith("s")) {
-            millis = new ExtractInSecond(sValue).invoke();
+            millis = 0;
         } else if (sValue.endsWith("m")) {
-            millis = new ExtractInMinute(sValue).invoke();
-        } else if (sValue.endsWith("H") || sValue.endsWith("h")) {
-            millis = new ExtractHour(sValue).invoke();
+            millis = extractMillisecond(sValue);
+            if (sValue.endsWith("H") || sValue.endsWith("h")) {
+            millis = 0;
         } else if (sValue.endsWith("d")) {
-            millis = new ExtractDay(sValue).invoke();
+            millis = 0;
         } else if (sValue.endsWith("w")) {
-            millis = new ExtractWeek(sValue).invoke();
-        } else {
+            millis = 0;
+        }
+        }  else {
             millis = Long.parseLong(sValue);
         }
 
