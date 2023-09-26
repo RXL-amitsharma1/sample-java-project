@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Custom Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd"
+        xsi:noNamespaceSchemaLocation="http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+        
+    <!-- Rule 1: Avoid using java.lang.System.exit -->
+    <rule ref="rulesets/java/strictexception.xml/AvoidUsingHardCodedIP">
+        <priority>1</priority>
+        <name>Avoid Using Hard Coded IP Address</name>
+        <description>Avoid using hard-coded IP addresses in your code.</description>
+    </rule>
+    
+    <!-- Rule 2: Avoid empty catch blocks -->
+    <rule ref="rulesets/java/empty.xml/EmptyCatchBlock">
+        <priority>2</priority>
+        <name>Empty Catch Block</name>
+        <description>Avoid empty catch blocks as they can hide errors.</description>
+    </rule>
+    
+    <!-- Rule 3: Avoid using short variable names -->
+    <rule ref="rulesets/java/naming.xml/ShortVariable">
+        <priority>3</priority>
+        <name>Short Variable Names</name>
+        <description>Avoid using short variable names that are not descriptive.</description>
+    </rule>
+    
+    <!-- Rule 4: Avoid using finalizers -->
+    <rule ref="rulesets/java/migrating.xml/AvoidUsingFinalize">
+        <priority>4</priority>
+        <name>Avoid Using Finalize</name>
+        <description>Avoid using the finalize() method in classes.</description>
+    </rule>
+    
+    <!-- Rule 5: Avoid using floating-point for money -->
+    <rule ref="rulesets/java/strictexception.xml/AvoidUsingFloatingPoint">
+        <priority>5</priority>
+        <name>Avoid Using Floating Point for Money</name>
+        <description>Avoid using floating-point data types for monetary calculations.</description>
+    </rule>
+    
+    <!-- Rule 6: Avoid using java.util.Vector -->
+    <rule ref="rulesets/java/codestyle.xml/AvoidUsingVector">
+        <priority>6</priority>
+        <name>Avoid Using java.util.Vector</name>
+        <description>Avoid using the java.util.Vector class; use ArrayList or LinkedList instead.</description>
+    </rule>
+    
+    <!-- Rule 7: Avoid using java.lang.Thread.stop -->
+    <rule ref="rulesets/java/threads.xml/AvoidThreadGroup">
+        <priority>7</priority>
+        <name>Avoid Thread Group</name>
+        <description>Avoid using the java.lang.ThreadGroup class.</description>
+    </rule>
+    
+    <!-- Rule 8: Avoid using empty if statements -->
+    <rule ref="rulesets/java/empty.xml/EmptyIfStmt">
+        <priority>8</priority>
+        <name>Empty If Statement</name>
+        <description>Avoid using empty if statements.</description>
+    </rule>
+    
+    <!-- Rule 9: Avoid using non-thread-safe SimpleDateFormat -->
+    <rule ref="rulesets/java/errorprone.xml/AvoidUsingHardCodedIP">
+        <priority>9</priority>
+        <name>Avoid Using Hard Coded IP Address</name>
+        <description>Avoid using hard-coded IP addresses in your code.</description>
+    </rule>
+    
+    <!-- Rule 10: Avoid using strings for switch -->
+    <rule ref="rulesets/java/codestyle.xml/AvoidStringSwitch">
+        <priority>10</priority>
+        <name>Avoid String Switch</name>
+        <description>Avoid using strings in switch statements.</description>
+    </rule>
+</ruleset>
