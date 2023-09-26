@@ -1,27 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Custom Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+<?xml version="1.0"?>
+
+<ruleset name="My Java Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/6.0.0 http://pmd.sourceforge.net/ruleset_6_0_0.xsd"
-        xsi:noNamespaceSchemaLocation="http://pmd.sourceforge.net/ruleset_6_0_0.xsd">
-    
-    <!-- Rule 1: Avoid using java.lang.System.exit -->
-    <rule>
-        <name>Avoid Using System.exit()</name>
-        <description>Avoid using System.exit() to terminate the application.</description>
-        <priority>1</priority>
+        xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <!-- Rule for avoiding the use of wildcard imports -->
+    <rule ref="rulesets/java/imports.xml/AvoidStarImport"/>
+
+    <!-- Rule for avoiding the use of default package -->
+    <rule ref="rulesets/java/design.xml/AvoidDefaultPackage"/>
+
+    <!-- Rule for avoiding empty catch blocks -->
+    <rule ref="rulesets/java/empty.xml/AvoidCatchingNPE">
         <properties>
-            <property name="violationSuppressXPath" value="//Expression/PrimaryExpression/PrimaryPrefix/Name[@Image='exit']" />
+            <property name="allowCommentedBlocks" value="false"/>
         </properties>
-        <example>
-            <![CDATA[
-            public class Example {
-                public static void main(String[] args) {
-                    System.exit(0);
-                }
-            }
-            ]]>
-        </example>
-        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_bestpractices.html#avoidusingsystemexit</externalInfoURL>
     </rule>
-  
+
 </ruleset>
