@@ -1,76 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset name="Custom Ruleset" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd"
-        xsi:noNamespaceSchemaLocation="http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-        
+        xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/6.0.0 http://pmd.sourceforge.net/ruleset_6_0_0.xsd"
+        xsi:noNamespaceSchemaLocation="http://pmd.sourceforge.net/ruleset_6_0_0.xsd">
+    
     <!-- Rule 1: Avoid using java.lang.System.exit -->
-    <rule ref="rulesets/java/strictexception.xml/AvoidUsingHardCodedIP">
+    <rule>
+        <name>Avoid Using System.exit()</name>
+        <description>Avoid using System.exit() to terminate the application.</description>
         <priority>1</priority>
-        <name>Avoid Using Hard Coded IP Address</name>
-        <description>Avoid using hard-coded IP addresses in your code.</description>
+        <properties>
+            <property name="violationSuppressXPath" value="//Expression/PrimaryExpression/PrimaryPrefix/Name[@Image='exit']" />
+        </properties>
+        <example>
+            <![CDATA[
+            public class Example {
+                public static void main(String[] args) {
+                    System.exit(0);
+                }
+            }
+            ]]>
+        </example>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_bestpractices.html#avoidusingsystemexit</externalInfoURL>
     </rule>
     
     <!-- Rule 2: Avoid empty catch blocks -->
-    <rule ref="rulesets/java/empty.xml/EmptyCatchBlock">
-        <priority>2</priority>
+    <rule>
         <name>Empty Catch Block</name>
         <description>Avoid empty catch blocks as they can hide errors.</description>
+        <priority>2</priority>
+        <example>
+            <![CDATA[
+            public class Example {
+                public static void main(String[] args) {
+                    try {
+                        // Code that may throw an exception
+                    } catch (Exception e) {
+                        // Empty catch block
+                    }
+                }
+            }
+            ]]>
+        </example>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_errorprone.html#emptycatchblock</externalInfoURL>
     </rule>
     
     <!-- Rule 3: Avoid using short variable names -->
-    <rule ref="rulesets/java/naming.xml/ShortVariable">
-        <priority>3</priority>
+    <rule>
         <name>Short Variable Names</name>
         <description>Avoid using short variable names that are not descriptive.</description>
+        <priority>3</priority>
+        <properties>
+            <property name="minimum" value="3" />
+        </properties>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_bestpractices.html#shortvariablename</externalInfoURL>
     </rule>
     
     <!-- Rule 4: Avoid using finalizers -->
-    <rule ref="rulesets/java/migrating.xml/AvoidUsingFinalize">
-        <priority>4</priority>
-        <name>Avoid Using Finalize</name>
+    <rule>
+        <name>Avoid Using Finalizers</name>
         <description>Avoid using the finalize() method in classes.</description>
+        <priority>4</priority>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_migration.html#avoidusingfinalizer</externalInfoURL>
     </rule>
     
     <!-- Rule 5: Avoid using floating-point for money -->
-    <rule ref="rulesets/java/strictexception.xml/AvoidUsingFloatingPoint">
-        <priority>5</priority>
+    <rule>
         <name>Avoid Using Floating Point for Money</name>
         <description>Avoid using floating-point data types for monetary calculations.</description>
+        <priority>5</priority>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_strictexception.html#avoidusingfloatingpointformoney</externalInfoURL>
     </rule>
     
     <!-- Rule 6: Avoid using java.util.Vector -->
-    <rule ref="rulesets/java/codestyle.xml/AvoidUsingVector">
-        <priority>6</priority>
+    <rule>
         <name>Avoid Using java.util.Vector</name>
         <description>Avoid using the java.util.Vector class; use ArrayList or LinkedList instead.</description>
+        <priority>6</priority>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_codestyle.html#avoidusingvector</externalInfoURL>
     </rule>
     
     <!-- Rule 7: Avoid using java.lang.Thread.stop -->
-    <rule ref="rulesets/java/threads.xml/AvoidThreadGroup">
+    <rule>
+        <name>Avoid Thread.stop() Method</name>
+        <description>Avoid using the deprecated Thread.stop() method.</description>
         <priority>7</priority>
-        <name>Avoid Thread Group</name>
-        <description>Avoid using the java.lang.ThreadGroup class.</description>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_threads.html#avoidthreadstop</externalInfoURL>
     </rule>
     
     <!-- Rule 8: Avoid using empty if statements -->
-    <rule ref="rulesets/java/empty.xml/EmptyIfStmt">
-        <priority>8</priority>
+    <rule>
         <name>Empty If Statement</name>
         <description>Avoid using empty if statements.</description>
+        <priority>8</priority>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_errorprone.html#emptyifstmt</externalInfoURL>
     </rule>
     
     <!-- Rule 9: Avoid using non-thread-safe SimpleDateFormat -->
-    <rule ref="rulesets/java/errorprone.xml/AvoidUsingHardCodedIP">
+    <rule>
+        <name>Avoid Using Non-Thread-Safe SimpleDateFormat</name>
+        <description>Avoid using non-thread-safe instances of SimpleDateFormat.</description>
         <priority>9</priority>
-        <name>Avoid Using Hard Coded IP Address</name>
-        <description>Avoid using hard-coded IP addresses in your code.</description>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_errorprone.html#avoidusingnonthreadsafeSimpleDateFormat</externalInfoURL>
     </rule>
     
     <!-- Rule 10: Avoid using strings for switch -->
-    <rule ref="rulesets/java/codestyle.xml/AvoidStringSwitch">
-        <priority>10</priority>
-        <name>Avoid String Switch</name>
+    <rule>
+        <name>Avoid Using Strings in Switch Statements</name>
         <description>Avoid using strings in switch statements.</description>
+        <priority>10</priority>
+        <externalInfoURL>https://pmd.github.io/latest/pmd_rules_java_codestyle.html#avoidusingstringsinswitch</externalInfoURL>
     </rule>
 </ruleset>
