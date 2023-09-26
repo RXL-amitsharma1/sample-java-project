@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+  <!-- Define the source directories to analyze -->
+  <SourceDirs>
+    <SourceDir>src/main/java</SourceDir>
+  </SourceDirs>
+
+  <!-- Include or exclude specific packages or classes -->
+  <Match>
+    <!-- Include only specific packages -->
+    <Package name="com.codacy.test.*" />
+    
+    <!-- Exclude specific classes -->
+    <!-- Class name="com.example.ExcludedClass" /-->
+  </Match>
+
+  <!-- Specify bug detectors to use -->
+  <BugPattern id="DLS_DEAD_LOCAL_STORE" />
+  <BugPattern id="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" />
+  
+</FindBugsFilter>
