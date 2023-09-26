@@ -4,17 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
-    <!-- Rule for avoiding the use of wildcard imports -->
-    <rule ref="rulesets/java/imports.xml/AvoidStarImport"/>
+        <rule ref="category/java/bestpractices.xml/AbstractClassWithoutAbstractMethod" />
 
-    <!-- Rule for avoiding the use of default package -->
-    <rule ref="rulesets/java/design.xml/AvoidDefaultPackage"/>
-
-    <!-- Rule for avoiding empty catch blocks -->
-    <rule ref="rulesets/java/empty.xml/AvoidCatchingNPE">
-        <properties>
-            <property name="allowCommentedBlocks" value="false"/>
-        </properties>
-    </rule>
 
 </ruleset>
