@@ -1,0 +1,39 @@
+
+rules:
+  - id: java.unsafe-deserialization
+    languages:
+      - java
+    message: |
+      Deserialization of untrusted data can lead to security flaws. Consider reviewing this code.
+    severity: WARNING
+    patterns:
+      - pattern: |
+          new ObjectInputStream(...)
+
+  - id: javascript.alert
+    languages:
+      - javascript
+    message: |
+      Use of 'alert' is not recommended for production code.
+    severity: WARNING
+    patterns:
+      - pattern: alert(...)
+
+  - id: java.sql-injection
+    languages:
+      - java
+    message: |
+      Building SQL queries using string concatenation can lead to SQL injection vulnerabilities.
+    severity: ERROR
+    patterns:
+      - pattern: |
+          $CONN.createStatement().executeQuery("SELECT ... WHERE $COLUMN = '" + $USER_INPUT + "'")
+
+  - id: javascript.console-log
+    languages:
+      - javascript
+    message: |
+      Consider removing 'console.log' statements before deploying to production.
+    severity: INFO
+    patterns:
+      - pattern: console.log(...)
